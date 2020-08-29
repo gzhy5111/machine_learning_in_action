@@ -1,6 +1,7 @@
 # 首先，我们刚开始写这个文件都是边看书边写的，书上程序清单3-1告诉我要先写“计算给定数据集的信息熵”这个函数，也告诉你了需要传进去什么参数，得到什么。我们就一边理解一边完成即可。不要像以前那样从main函数开始写起。因为是刚学，我们不会有很清晰的思路，刚开始我们要做的就是模仿。
 
 from math import log
+from trees2 import *
 
 """
 功能：计算给定数据集的信息熵
@@ -84,6 +85,7 @@ def chooseBestFeatureToSplit(dataSet):
     entropy = calculateShannonEntropy(dataSet)                                          # 集合熵 entropy
     MaxInfoGain = 0.0
 
+    flag = -1       # 初始值，表示最优列编号
     # 遍历所有特征
     for i in range(count):
         # 找到一个特征中的所有可能取值
@@ -119,4 +121,13 @@ if __name__ == "__main__":
     # print(splitDataSet(dataSet, 0, 0))
     # print(splitDataSet(dataSet, 0, 1))
     # print(splitDataSet(dataSet, 1, 0))
-    chooseBestFeatureToSplit(dataSet)
+    a = chooseBestFeatureToSplit(dataSet)
+    print("最好的特征下标值是：", a)
+
+    print(dataSet)
+
+    # 下面开始引用trees2文件
+    print("\n下面开始引用trees2文件：")
+    featLabels = []
+    myTree = createTree(dataSet, labels, featLabels)
+    print(myTree)           # 构造出的文字决策树
